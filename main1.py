@@ -29,21 +29,9 @@ async def join_queue(request: UserRequest):
         user = queue.add_user(request.name)
         position = queue.get_position(user.id)
 
-        # Генерация QR-кода с user_id
-        qr = qrcode.QRCode(version=1, box_size=10, border=5)
-        qr.add_data(f"QUEUE_USER_ID:{user.id}")
-        qr.make(fit=True)
-        img = qr.make_image(fill_color="black", back_color="white")
-
-        # Конвертация QR-кода в base64
-        buffered = BytesIO()
-        img.save(buffered, format="PNG")
-        qr_base64 = base64.b64encode(buffered.getvalue()).decode()
-
         return {
             "user_id": user.id,
-            "position": position,
-            "qr_code_url": f"data:image/png;base64,{qr_base64}"  # QR-код для отображения
+            "position": position
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
