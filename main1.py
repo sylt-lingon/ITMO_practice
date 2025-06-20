@@ -18,7 +18,6 @@ class UserRequest(BaseModel):
 class UserResponse(BaseModel):
     user_id: int
     position: int
-    qr_code_url: str
 
 
 # Эндпоинты
