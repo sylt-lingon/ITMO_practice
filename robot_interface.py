@@ -5,7 +5,7 @@ import os
 import requests
 import json
 
-API_URL = "http://localhost:8000"  # Адрес вашего FastAPI-сервера
+API_URL = "http://localhost:8000"  # Адрес FastAPI-сервера
 
 def load_settings():
     try:
@@ -26,8 +26,8 @@ class CatQueueApp:
         self.root.title("Chatty Queue")
         self.root.geometry("800x600")
         self.current_frame = None
-        self.qr_image_path = "qr_bot.jpg"  # Путь к вашему QR-коду
-        self.return_timer = None  # Для хранения ID таймера возврата
+        self.qr_image_path = "qr_bot.jpg"  # Путь к QR-коду
+        self.return_timer = None
 
         # Проверяем, существует ли файл QR-кода
         if not os.path.exists(self.qr_image_path):
@@ -43,7 +43,6 @@ class CatQueueApp:
         self.text_color = self.settings['text_color']
         self.num_color = self.settings['num_color']
 
-        # Загружаем QR-код заранее
         try:
             self.qr_image = Image.open(self.qr_image_path)
             self.qr_photo = ImageTk.PhotoImage(self.qr_image.resize((250, 250), Image.LANCZOS))
@@ -145,8 +144,8 @@ class CatQueueApp:
                            command=self.show_welcome_frame,
                            style="Pink.TButton").pack(pady=10, ipadx=20, ipady=10)
 
-                # Автоматический возврат через 10 секунд
-                self.schedule_return(10)
+                # Автоматический возврат через 20 секунд
+                self.schedule_return(20)
 
             else:
                 messagebox.showerror("Ошибка", f"Сервер вернул ошибку: {response.text}")
@@ -172,7 +171,7 @@ class CatQueueApp:
                    command=self.show_welcome_frame,
                    style="Pink.TButton").pack(pady=20, ipadx=20, ipady=10)
 
-        # Автоматический возврат через 10 секунд
+        # Автоматический возврат через 20 секунд
         self.schedule_return(20)
 
 
