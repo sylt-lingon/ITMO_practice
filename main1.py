@@ -23,7 +23,7 @@ class UserResponse(BaseModel):
 # Эндпоинты
 @app.post("/join", response_model=UserResponse, summary="Добавить пользователя в очередь")
 async def join_queue(request: UserRequest):
-    """Добавляет пользователя в очередь и возвращает его номер + QR-код."""
+    """Добавляет пользователя в очередь и возвращает его номер """
     try:
         user = queue.add_user(request.name)
         position = queue.get_position(user.id)
