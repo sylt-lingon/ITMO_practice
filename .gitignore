@@ -1,0 +1,6 @@
+# Файлы, которые нужно игнорировать
+.env
+*.pyc
+__pycache__/
+secrets/
+config.ini
