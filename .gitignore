@@ -1,0 +1,12 @@
+# Секретные файлы
+.env
+.env.local
+
+# Файлы Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Локальные настройки
+settings.json
+secrets/
