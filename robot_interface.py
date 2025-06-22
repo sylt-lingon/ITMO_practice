@@ -7,6 +7,7 @@ import json
 
 API_URL = "http://localhost:8000"  # Адрес FastAPI-сервера
 
+
 def load_settings():
     try:
         with open('settings.json', 'r') as f:
@@ -27,7 +28,7 @@ class CatQueueApp:
         self.root.geometry("800x600")
         self.current_frame = None
         self.qr_image_path = "qr_bot.jpg"  # Путь к QR-коду
-        self.return_timer = None
+        self.return_timer = None  # Для хранения ID таймера возврата
 
         # Проверяем, существует ли файл QR-кода
         if not os.path.exists(self.qr_image_path):
@@ -43,6 +44,7 @@ class CatQueueApp:
         self.text_color = self.settings['text_color']
         self.num_color = self.settings['num_color']
 
+        # Загружаем QR-код заранее
         try:
             self.qr_image = Image.open(self.qr_image_path)
             self.qr_photo = ImageTk.PhotoImage(self.qr_image.resize((250, 250), Image.LANCZOS))
@@ -128,7 +130,7 @@ class CatQueueApp:
                 tk.Label(self.current_frame, text=f"{name}, ваш номер:",
                          font=("Arial", 20), bg=self.bg_color, fg=self.text_color).pack(pady=(120, 20))
 
-                tk.Label(self.current_frame, text=str(data['position']),
+                tk.Label(self.current_frame, text=str(data['user_id']),
                          font=("Arial", 48, "bold"), bg=self.bg_color, fg=self.num_color).pack(pady=10)
 
                 tk.Label(self.current_frame, text=f"Перед вами: {data['position'] - 1} человек",
@@ -144,8 +146,8 @@ class CatQueueApp:
                            command=self.show_welcome_frame,
                            style="Pink.TButton").pack(pady=10, ipadx=20, ipady=10)
 
-                # Автоматический возврат через 20 секунд
-                self.schedule_return(20)
+                # Автоматический возврат через 10 секунд
+                self.schedule_return(10)
 
             else:
                 messagebox.showerror("Ошибка", f"Сервер вернул ошибку: {response.text}")
@@ -171,7 +173,7 @@ class CatQueueApp:
                    command=self.show_welcome_frame,
                    style="Pink.TButton").pack(pady=20, ipadx=20, ipady=10)
 
-        # Автоматический возврат через 20 секунд
+        # Автоматический возврат через 10 секунд
         self.schedule_return(20)
 
 
