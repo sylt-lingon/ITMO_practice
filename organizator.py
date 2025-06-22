@@ -173,8 +173,6 @@ class RobotQueueOrganizer:
         try:
             self.save_settings()
             messagebox.showinfo("Сохранено", "Настройки успешно сохранены!")
-        except ValueError:
-            messagebox.showerror("Ошибка", "Размер QR-кода должен быть числом")
 
     def clear_content(self):
         """Очищает основную область контента"""
