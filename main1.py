@@ -64,4 +64,4 @@ async def get_queue():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="192.168.0.104", port=8000)
