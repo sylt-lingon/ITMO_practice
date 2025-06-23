@@ -9,7 +9,7 @@ from config import Config
 
 # Конфигурация
 BOT_TOKEN = Config.TOKEN
-API_URL = "http://localhost:8000"
+API_URL = "http://192.168.0.104:8000"
 ADMINS = [int(i) for i in Config.ADMINS.split(",")]
 NOTIFY_BEFORE = 3  # Уведомлять за 3 позиции до очереди
 
