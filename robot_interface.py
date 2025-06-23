@@ -5,7 +5,7 @@ import os
 import requests
 import json
 
-API_URL = "http://localhost:8000"  # Адрес FastAPI-сервера
+API_URL = "http://192.168.0.104:8000"  # Адрес FastAPI-сервера
 
 
 def load_settings():
