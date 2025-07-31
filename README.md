@@ -15,19 +15,20 @@
 
 ## Установка и запуск
 ### Клонировать репозиторий:
-'
+```
 git clone https://github.com/sylt_lingon/ITMO_practice.git
 cd queue-system
-'
+```
 ### Настроить окружение:
-
-'cp .env.example .env
-nano .env'
-
+```
+cp .env.example .env
+nano .env
+```
 ### Собрать и запустить контейнер:
-
-'docker build -t queue-system .
-docker run -p 8000:8000 queue-system'
+```
+docker build -t queue-system .
+docker run -p 8000:8000 queue-system
+```
 
 ## Основный компоненты:
 1. API сервер (main1.py)
